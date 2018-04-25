@@ -10,7 +10,7 @@ psql -d vmug -U postgres -c "CREATE TABLE members (
     exclude     boolean NOT NULL DEFAULT 'f',
     checkedin   boolean NOT NULL DEFAULT 'f',
     prereg      boolean NOT NULL DEFAULT 'f',
-    timestamp   timestamp NOT NULL
+    timestamp   timestamp NOT NULL DEFAULT now()
 );"
 psql -d vmug -U postgres -c "CREATE TABLE theme (
     theme       text NOT NULL,
