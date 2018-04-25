@@ -1,7 +1,6 @@
 #!/bin/bash
-psql postgres postgres
-CREATE DATABASE vmug;
-CREATE TABLE members (
+psql -U postgres -c "CREATE DATABASE vmug;"
+psql -U postgres -c "CREATE TABLE members (
     id          SERIAL PRIMARY KEY,
     firstname   varchar(30) NOT NULL,
     lastname    varchar(30) NOT NULL,
@@ -12,5 +11,5 @@ CREATE TABLE members (
     checkedin   boolean NOT NULL DEFAULT 'f',
     prereg      boolean NOT NULL DEFAULT 'f',
     timestamp   timestamp NOT NULL
-);
+);"
 exit 0
