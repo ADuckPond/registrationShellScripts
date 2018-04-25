@@ -1,7 +1,7 @@
 #!/bin/bash
 psql -U postgres -c "CREATE DATABASE vmug;"
 psql -U postgres -c "CREATE TABLE members (
-    id          SERIAL PRIMARY KEY,
+    id          serial PRIMARY KEY,
     firstname   varchar(30) NOT NULL,
     lastname    varchar(30) NOT NULL,
     email       varchar(50) NOT NULL,
@@ -11,5 +11,25 @@ psql -U postgres -c "CREATE TABLE members (
     checkedin   boolean NOT NULL DEFAULT 'f',
     prereg      boolean NOT NULL DEFAULT 'f',
     timestamp   timestamp NOT NULL
+);"
+psql -U postgres -c "CREATE TABLE theme (
+    theme       text NOT NULL,
+    enabled     boolean NOT NULL DEFAULT 'f';
+)"
+psql -U postgres -c "INSERT INTO theme (theme, enabled) values
+('blue','t'),
+('red','f'),
+('yellow','f'),
+('green','f')
+;"
+psql -U postgres -c "CREATE EXTENSION pgcrypto;"
+psql -U postgres -c "CREATE TABLE admin (
+    id          serial PRIMARY KEY,
+    username    varchar(20) NOT NULL UNIQUE,
+    password    text NOT NULL
+);"
+psql -U postgres -c "INSERT INTO admin (username,password) values (
+    'admin',
+    crypt('admin',gen_salt('bf'))
 );"
 exit 0
