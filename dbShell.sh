@@ -14,8 +14,8 @@ psql -U postgres -c "CREATE TABLE members (
 );"
 psql -U postgres -c "CREATE TABLE theme (
     theme       text NOT NULL,
-    enabled     boolean NOT NULL DEFAULT 'f';
-)"
+    enabled     boolean NOT NULL DEFAULT 'f'
+);"
 psql -U postgres -c "INSERT INTO theme (theme, enabled) values
 ('blue','t'),
 ('red','f'),
