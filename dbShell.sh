@@ -1,7 +1,7 @@
 #!/bin/bash
 psql postgres postgres
 CREATE DATABASE vmug;
-CREATE TABLE users (
+CREATE TABLE members (
     id          SERIAL PRIMARY KEY,
     firstname   varchar(30) NOT NULL,
     lastname    varchar(30) NOT NULL,
