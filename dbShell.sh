@@ -1,6 +1,6 @@
 #!/bin/bash
-psql -U postgres -c "CREATE DATABASE vmug;"
-psql -U postgres -c "CREATE TABLE members (
+psql -d vmug -U postgres -c "CREATE DATABASE vmug;"
+psql -d vmug -U postgres -c "CREATE TABLE members (
     id          serial PRIMARY KEY,
     firstname   varchar(30) NOT NULL,
     lastname    varchar(30) NOT NULL,
@@ -12,23 +12,23 @@ psql -U postgres -c "CREATE TABLE members (
     prereg      boolean NOT NULL DEFAULT 'f',
     timestamp   timestamp NOT NULL
 );"
-psql -U postgres -c "CREATE TABLE theme (
+psql -d vmug -U postgres -c "CREATE TABLE theme (
     theme       text NOT NULL,
     enabled     boolean NOT NULL DEFAULT 'f'
 );"
-psql -U postgres -c "INSERT INTO theme (theme, enabled) values
+psql -d vmug -U postgres -c "INSERT INTO theme (theme, enabled) values
 ('blue','t'),
 ('red','f'),
 ('yellow','f'),
 ('green','f')
 ;"
-psql -U postgres -c "CREATE EXTENSION pgcrypto;"
-psql -U postgres -c "CREATE TABLE admin (
+psql -d vmug -U postgres -c "CREATE EXTENSION pgcrypto;"
+psql -d vmug -U postgres -c "CREATE TABLE admin (
     id          serial PRIMARY KEY,
     username    varchar(20) NOT NULL UNIQUE,
     password    text NOT NULL
 );"
-psql -U postgres -c "INSERT INTO admin (username,password) values (
+psql -d vmug -U postgres -c "INSERT INTO admin (username,password) values (
     'admin',
     crypt('admin',gen_salt('bf'))
 );"
