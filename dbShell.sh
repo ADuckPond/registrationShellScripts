@@ -4,7 +4,7 @@ psql -d vmug -U postgres -c "CREATE TABLE members (
     id          serial PRIMARY KEY,
     firstname   varchar(30) NOT NULL,
     lastname    varchar(30) NOT NULL,
-    email       varchar(50) NOT NULL,
+    email       varchar(50),
     company     varchar(50),
     title       varchar(50),
     exclude     boolean NOT NULL DEFAULT 'f',
